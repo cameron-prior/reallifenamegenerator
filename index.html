@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Real Life Name Generator</title>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style type="text/css">
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 50px 25px 50px 50px;
+        }
+        
+        #nameInput {
+            width: 300px;
+        }
+        
+        .container {}
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div>
+            <h1>Real Life Name Generator</h1> <br> &nbsp;
+        </div>
+        <div id="content">
+        </div>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script>
+        //Honestly this js is just trash but I want to do this thing with or without good practice so bah.
+        var inputScreen = '<h3>Please enter your name:</h3> <br /><input id="nameInput" class="form-control" type="text" name="name"><br><div id="btnGenerate" class="btn btn-default" onclick="showLoadingScreen();">Generate</div>';
+        var loadingScreen = '<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>';
+        var displayScreenBefore = '<h3>Your real life name is:<h3> <h2> ';
+        var displayScreenAfter = '</h2><br /><div class="btn btn-default" onclick="showInputScreen();">Generate a new name</div>';
+
+        var name = '';
+
+        function switchContent(content) {
+            var target = $("#content");
+            target.fadeOut("fast", function() {
+                target.html(content);
+                target.fadeIn("slow");
+            });
+        }
+
+        function showLoadingScreen() {
+            name = $("#nameInput").val();
+
+            if (name != '') {
+                switchContent(loadingScreen);
+                setTimeout(function() {
+                    switchContent(displayScreenBefore + name + displayScreenAfter);
+                }, 2000);
+            }
+
+        }
+
+        function showInputScreen() {
+            name = '';
+            switchContent(inputScreen);
+        }
+
+
+
+
+        $(document).ready(function() {
+
+            switchContent(inputScreen);
+
+        });
+    </script>
+
+</body>
+
+</html>
